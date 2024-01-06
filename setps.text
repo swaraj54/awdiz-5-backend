@@ -1,0 +1,9 @@
+Setup 
+
+Step 1 : package.json , npm init -y 
+
+Step 2 : Create index.js file 
+
+Step 3 : install nodemon, npm i nodemon
+
+Step 4 : Add start script in package.json file and add value, nodemon index.js 
