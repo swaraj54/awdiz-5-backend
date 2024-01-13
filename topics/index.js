@@ -52,25 +52,42 @@
 
 
 
-import http from 'http';
+// import http from 'http';
 
-const books = ["ABC", "XYZ", "PQR"];
+// const books = ["ABC", "XYZ", "PQR"];
 
-const server = http.createServer((req, res) => {
-  if (req.method === "GET" && req.url === "/api/books") {
-    res.end(JSON.stringify(books))
-  } else if (req.method === "GET" && req.url === "/api/awdiz") {
-    res.end("Hi from awdiz")
-  } else {
-    res.end("Method or url not found..")
-  }
-})
+// const server = http.createServer((req, res) => {
+//   if (req.method === "GET" && req.url === "/api/books") {
+//     res.end(JSON.stringify(books))
+//   } else if (req.method === "GET" && req.url === "/api/awdiz") {
+//     res.end("Hi from awdiz")
+//   } else {
+//     res.end("Method or url not found..")
+//   }
+// })
 
-server.listen(8000, () => {
-  console.log("Server is running on port 8000")
-})
+// server.listen(8000, () => {
+//   console.log("Server is running on port 8000")
+// })
 
-console.log("Hi 1");
-setTimeout(() => { console.log("Hi 2") }, 3000)
-console.log("Hi 3");
-setTimeout(() => { console.log("Hi 4") }, 5000)
+// 1. console.log("Hi 1");
+// 2. setTimeout(() => { console.log("Hi 2") }, 3000)
+// 3. console.log("Hi 3");
+// 4. setTimeout(() => { console.log("Hi 4") }, 5000)
+
+
+// 1. Call stack  - 1 excuted , 2 , 3 excuted , 4 ,  2 excuted,  4 excuted , 5 excuted
+// 2 .Async stack - 2 do work 3000  , 4 do work 5000
+// 3. Callback queue - 2 , 4,  5
+// 4. Event loop  - continuesly checking call stack and callback queue, if call stack is empty then
+//                  it'll pick first task from callback queue and will add to call stack, and after execution of that 
+//                  task it'll pick next task from callback queue and will add to call stack and so on..
+
+
+
+
+import dotenv from 'dotenv';
+
+dotenv.config()
+
+console.log(process.env.MY_SECRET_KEY)
