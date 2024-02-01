@@ -53,7 +53,7 @@ export const login = async (req, res) => {
             return res.status(404).json({ success: false, message: "Password is incorrect." })
         }
 
-        const token = await jwt.sign({ userId: user._id }, process.env.JWT_SECRET)
+        const token = await jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: 120 })
         // console.log(token,"token")
         return res.status(200).json({ success: true, message: "Login successfull.", token: token, user: { userId: user._id, name: user.name, email: user.email } })
 
@@ -77,6 +77,15 @@ export const getCurrentUser = async (req, res) => {
             return res.status(404).json({ success: false })
         }
         return res.json({ success: true, user: { name: user.name, email: user.email, userId: user._id } })
+    } catch (error) {
+        return res.status(500).json({ success: false, error: error })
+    }
+}
+
+
+export const getProfileData = async (req, res) => {
+    try {
+        return res.send(true)
     } catch (error) {
         return res.status(500).json({ success: false, error: error })
     }
