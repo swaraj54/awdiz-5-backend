@@ -15,7 +15,10 @@ const userSchema = new Schema({
         required: true
     },
     cart: {
-        type: [String]
+        type: [{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product'
+        }]
     }
 })
 
