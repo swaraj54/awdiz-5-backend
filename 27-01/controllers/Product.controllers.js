@@ -44,3 +44,22 @@ export const getSingleProduct = async (req, res) => {
         return res.status(500).json({ error, success: false })
     }
 }
+
+export const testingMatchGroupStaging = async (req, res) => {
+    try {
+        const products = await ProductSchema.aggregate([
+            { $match: { category: "clothing", price: { $gte: 100 } } },
+            {
+                $group: {
+                    _id: "$product",
+                    totalQuantity: { $sum: "$quantity" },
+                    totalPrice: { $sum: { $multiply: ["$quantity", "$price"] } }
+                }
+            },
+        ])
+        return res.status(200).json({ success: true, products: products })
+
+    } catch (error) {
+        return res.status(500).json({ error, success: false })
+    }
+}

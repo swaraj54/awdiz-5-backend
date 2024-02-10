@@ -53,7 +53,7 @@ export const login = async (req, res) => {
             return res.status(404).json({ success: false, message: "Password is incorrect." })
         }
 
-        const token = await jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: 120 })
+        const token = await jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: 12000 })
         // console.log(token,"token")
         return res.status(200).json({ success: true, message: "Login successfull.", token: token, user: { userId: user._id, name: user.name, email: user.email } })
 

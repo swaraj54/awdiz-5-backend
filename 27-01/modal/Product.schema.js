@@ -22,6 +22,10 @@ const productSchema = new Schema({
         type: String,
         required: true
     },
+    userId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Product'
+    }
 })
 
 export default mongoose.model("Product", productSchema)
